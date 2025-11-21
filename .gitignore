@@ -1,0 +1,10 @@
+# Ignorar archivos temporales de macOS
+.DS_Store
+._*
+
+# Ignorar archivos temporales de Office y documentos
+*~$*
+*.docx
+
+# Ignorar otros archivos temporales o de compilación no deseados
+/Tienda DS
