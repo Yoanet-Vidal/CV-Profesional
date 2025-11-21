@@ -1,0 +1,389 @@
+/* DEFINICIÓN DE VARIABLES CSS */
+:root {
+    --color-principal: #CD3333; /* Rojo */
+    --color-secundario: #000;
+    --color-blanco: #FFF;
+    --color-fondo-tarjeta: rgba(255, 255, 255, 0.90); /* Opacidad de las tarjetas del panel derecho */
+    --color-borde-tarjeta: rgba(0, 0, 0, 0.05);
+    --color-texto-flotante: rgba(0, 0, 0, 0.15); /* Mejor contraste */
+    --font-principal: 'Poppins', sans-serif;
+    --ancho-izquierda: 40vw; 
+    --ancho-derecha: 60vw;  
+    --ancho-tarjeta: 700px; /* Ancho ampliado para las tarjetas */
+    /* ATENCIÓN: La variable --bg-gris-claro no estaba definida, se reemplazará por un gris */
+    --bg-gris-claro: #F5F5F5; 
+}
+
+/* RESET GLOBAL */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*
+======================================
+    ESTRUCTURA BASE Y FONDO FIJO
+======================================
+*/
+body, html {
+    font-family: var(--font-principal);
+    color: var(--color-secundario);
+    background-color: var(--bg-gris-claro); 
+    overflow-x: hidden;
+    line-height: 22px;
+    text-align: left; /* Alineación del texto */
+}
+
+.favicon {
+    background-color: var(--font-principal);
+}
+
+/* CONTENEDOR PRINCIPAL: SOLO SCROLL */
+.page-wrapper {
+    position: relative;
+    min-height: 400vh;
+}
+
+/* LA IMAGEN DE FONDO FIJA A LA DERECHA */
+.fixed-background-image {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: var(--ancho-derecha); /* 60vw */
+    height: 100vh;
+
+    /* Propiedades background para mostrar la imagen de fondo */
+    background-image: url('img/arabesco_2.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover; 
+    background-color: transparent; /* El color sólido se aplica aquí por JS */
+    
+    /* Opacidad para hacerlo sutil */
+    opacity: 1; 
+    z-index: 1;
+}
+
+/* CONTENEDOR DEL NOMBRE (MITAD IZQUIERDA) */
+.side-content-left {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: var(--ancho-izquierda); /* 40vw */
+    height: 100vh;
+    z-index: 2;
+    transition: background-color 0.6s ease;
+}
+
+/* 2. CABECERA LATERAL FIJA (MI NOMBRE) */
+.side-header-fixed {
+    position: fixed; 
+    top: 15%;
+    left: 5%;
+    z-index: 9;
+    text-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+.side-header-fixed .name-text {
+    font-size: 7vw; 
+    line-height: 0.8;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--color-principal); 
+    transition: color 0.6s ease;
+}
+
+/* 3. TEXTO FLOTANTE DE FONDO (PALABRAS CLAVE) */
+.floating-background-text {
+    position: fixed;
+    bottom: 5%; 
+    font-size: 5vw;
+    line-height: 1.2;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 1); 
+    opacity: 0.2; 
+    z-index: 5; 
+    pointer-events: none;
+    transition: opacity 0.3s ease-out;
+    
+    /* Posiciona el texto a la derecha del contenedor izquierdo */
+    left: calc(var(--ancho-izquierda) - 30px); 
+    transform: translateX(-100%); 
+}
+
+/* 4. CONTENEDOR DE LAS TARJETAS (Ocupa el 60% Derecho) */
+.content-cards-container {
+    position: relative;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    margin-left: var(--ancho-izquierda); /* 40vw */
+    width: var(--ancho-derecha); /* 60vw */
+    max-width: none;
+    padding-right: 20px; 
+    background-color: transparent; /* Asegura que este contenedor sea transparente para que se vea el fondo fijo */
+}
+
+/* AJUSTE PARA QUE LAS TARJETAS SE CENTREN DENTRO DEL 60VW Y SE VEAN MÁS GRANDES */
+.content-card {
+    background-color: var(--color-fondo-tarjeta); 
+    max-width: var(--ancho-tarjeta); /* 700px */
+    width: 90%; 
+    margin-top: 50px;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--color-borde-tarjeta);
+    transform: translateX(0);
+    transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+}
+
+.content-card h2 {
+    color: var(--color-principal);
+    
+    /* Configuración para alinear el número y el texto y permitir la separación */
+    display: flex; 
+    align-items: baseline; 
+    
+    /* Estilos generales del título */
+    margin-bottom: 40px;
+    font-weight: 900;
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+    line-height: 1;
+}
+
+.content-card h2 .number-prefix {
+    /* El color se hereda o se mantiene explícito */
+    color: var(--color-principal); 
+    margin-right: 15px; /* Ajusta este valor (15px) para el espacio deseado */
+}
+
+.content-card p {
+    margin-bottom: 15px; 
+}
+
+/* ESTILOS DE LISTAS (VIÑETAS PERSONALIZADAS) */
+.content-card ul {
+    list-style: none; 
+    padding-left: 0;
+}
+
+.content-card ul li {
+    position: relative; 
+    padding-left: 15px; 
+}
+
+.content-card ul li::before {
+    content: "•"; /* El carácter del punto (viñeta) */
+    color: var(--color-principal); 
+    font-size: 1rem; 
+    position: absolute;
+    left: 0; 
+    top: 2px; 
+}
+
+.skills-group {
+    margin-bottom: 20px; 
+}
+
+.skills-group strong {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 700;
+    color: var(--color-principal); 
+}
+
+.content-card strong {
+    color: var(--color-principal);
+    font-size: 17px; /* Aplicar un tamaño específico a todos los títulos de sección/proyecto */
+}
+
+.text {
+    color: var(--color-principal);
+    font-size: 16px; /* Un poco más pequeño que el strong */
+    font-weight: 500; /* ¡Menos marcado! Peso normal */
+}
+
+/*
+=================================================== 
+    ESTILOS PROYECTOS (03) CON FLOAT Y LIGHTBOX 
+===================================================
+*/
+
+/* 1. ESTILOS BASE DEL CONTENEDOR DE PROYECTOS */
+.project-item {
+    margin-bottom: 40px;
+    border-bottom: 1px solid var(--color-borde-tarjeta);
+    padding-bottom: 20px;
+}
+
+.project-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+/* 2. ESTILO DE LA MINIATURA (USO DE FLOAT) */
+.project-item-thumb {
+    float: right; /* La imagen flota a la derecha */
+    cursor: zoom-in; /* Estilo original para el link */
+    display: block;
+    width: 150px; /* Reduce el tamaño de la miniatura */
+    height: auto;
+    margin-left: 20px; /* Margen para separar la imagen del texto */
+    margin-bottom: 10px;
+}
+
+.project-item-thumb img:hover {
+    cursor: pointer; 
+    transform: scale(1.03);
+}
+
+.project-item-thumb img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+/* CLAVE: Limpiar el float para que el contenedor se ajuste */
+.project-item::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/*
+=========================================== 
+    ESTILOS LIGHTBOX (VENTANA MODAL) 
+===========================================
+*/
+
+#lightbox-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    
+    /* IMPORTANTE: Asegurarse de que el display esté en flex para centrar y ser visible */
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    
+    z-index: 9999; 
+    opacity: 0; /* Empieza invisible */
+    visibility: hidden;
+    /* Transición para que la visibilidad cambie al final de la opacidad */
+    transition: opacity 0.3s ease, visibility 0s 0.3s; 
+}
+
+#lightbox-overlay.visible {
+    opacity: 1; /* Se hace visible con transición */
+    visibility: visible;
+    transition-delay: 0s; /* Se elimina el retraso para la aparición */
+}
+
+#lightbox-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+}
+
+#lightbox-image {
+    display: block;
+    max-width: 100%;
+    max-height: 90vh; 
+    border-radius: 5px;
+}
+
+#lightbox-close {
+    position: absolute;
+    top: -45px; /* Aumentar el valor negativo para subirlo más */
+    right: -25px; /* Usar un valor negativo para moverlo hacia afuera de la derecha */
+    color: var(--color-blanco);
+    font-size: 40px;
+    font-weight: 400;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+#lightbox-close:hover {
+    opacity: 1;
+}
+
+/*
+=========================================== 
+    MEDIA QUERIES PARA MÓVILES 
+===========================================
+*/
+
+@media (max-width: 900px) {
+    body {
+        font-size: 15px; /* Tamaño de la fuente */
+    }
+
+    .content-cards-container {
+        margin-left: 0; 
+        width: 100%;
+    }
+    .side-header-fixed .name-text {
+        color: var(--color-secundario); 
+    }
+    
+    /* Deshabilitar float en pantallas pequeñas */
+    .project-item-thumb {
+        float: none;
+        width: 90%; /* La imagen ocupa casi todo el ancho */
+        margin: 0 auto 15px auto; /* Centra la imagen y añade margen inferior */
+    }
+    .project-item-thumb img {
+        width: 100%;
+    }
+}
+
+/*
+=========================================== 
+    ESTILOS BOTÓN SUBIR ARRIBA
+===========================================
+*/
+#scrollToTopBtn {
+    display: none; /* Por defecto, oculto */
+    position: fixed;
+    bottom: 30px; /* Distancia desde abajo */
+    right: 30px; /* Distancia desde la derecha */
+    z-index: 99;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: var(--color-principal);
+    text-shadow: 0 0 1px #CD3333; /* Sombra para engrosar el texto */
+    cursor: pointer;
+    font-size: 20px;
+    line-height: 0;
+    opacity: 1;
+    transition: color 0.3s, opacity 0.3s; /* Transición para el color y la opacidad */
+}
+
+#scrollToTopBtn:hover {
+    color: #A02828; /* Rojo más oscuro al pasar el ratón */
+    opacity: 1;
+}
+
+/* Ajuste para que el botón no interfiera en móvil (opcional) */
+@media (max-width: 900px) {
+    #scrollToTopBtn {
+        font-size: 30px; /* Más pequeño en móvil */
+        bottom: 20px;
+        right: 20px;
+    }
+}
