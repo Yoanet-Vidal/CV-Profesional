@@ -212,6 +212,26 @@
         &#8593;
     </button>
     
+    <script>
+        // Define la contraseña que deseas usar
+        const contrasenaCorrecta = "MiProyectoGH77"; // <-- ¡CAMBIA ESTO!
+
+        document.body.style.display = 'none';
+
+        function verificarAcceso() {
+            const contrasenaIngresada = prompt("Por favor, introduce la contraseña:");
+
+            if (contrasenaIngresada === contrasenaCorrecta) {
+                document.body.style.display = '';
+            } else {
+                alert("Contraseña incorrecta o acceso denegado.");
+                window.location.href = "https://www.google.com";
+            }
+        }
+
+        verificarAcceso();
+    </script>
+
     <script src="script.js"></script> 
 </body>
 </html>
