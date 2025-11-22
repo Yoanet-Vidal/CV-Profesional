@@ -24,18 +24,18 @@
             <header class="side-header-fixed">
                 <h1 class="name-text">Yoanet<br>Vidal</h1>
             </header>
-            <div class="floating-background-text" id="floating-text">
-                Diseñadora
-            </div>
-    </div>
+        </div>
+        <div class="floating-background-text" id="floating-text">
+            Diseñadora
+        </div>
 
-    <div class="content-cards-container">
-        <section class="content-card" id="about">
-            <h2><span class="number-prefix">01</span> ACERCA DE</h2>
-            <p>
-                Licenciada en Artes Plásticas con una sólida base teórica en composición, color y estética. En proceso de reorientar mi carrera profesional, he complementado mi formación con estudios específicos en diseño gráfico, web y multimedia, manejando herramientas como Adobe Photoshop, InDesign y WordPress. Con gran atención al detalle y capacidad de aprendizaje autónomo, busco aplicar mi creatividad y habilidades técnicas para contribuir a proyectos de diseño.
-            </p>
-        </section>
+        <div class="content-cards-container">
+            <section class="content-card" id="about">
+                <h2><span class="number-prefix">01</span> ACERCA DE</h2>
+                <p>
+                    Licenciada en Artes Plásticas con una sólida base teórica en composición, color y estética. En proceso de reorientar mi carrera profesional, he complementado mi formación con estudios específicos en diseño gráfico, web y multimedia, manejando herramientas como Adobe Photoshop, InDesign y WordPress. Con gran atención al detalle y capacidad de aprendizaje autónomo, busco aplicar mi creatividad y habilidades técnicas para contribuir a proyectos de diseño.
+                </p>
+            </section>
 
         <section class="content-card" id="skills">
             <h2><span class="number-prefix">02</span> HABILIDADES</h2>
@@ -207,16 +207,6 @@
         </div>
     </div>
 
-    <div id="login-modal">
-        <div id="login-content">
-            <h3>🔒 GitHub Project Security</h3>
-            <p>Por favor, introduce la clave de acceso para ver este proyecto:</p>
-            <input type="password" id="password-input" placeholder="Contraseña de Acceso" required>
-            <button onclick="verificarAcceso()">Ver Proyecto</button>
-            <small style="color: #666; display: block; margin-top: 15px;">Si no tienes la contraseña, serás redirigido.</small>
-        </div>
-    </div>
-
    <!-- BOTÓN DE SUBIR ARRIBA -->
     <button id="scrollToTopBtn" title="Subir Arriba">
         &#8593;
@@ -225,7 +215,7 @@
 
     <!-- SCRIPT DE PROTECCIÓN POR CONTRASEÑA VERSIÓN 1-->
 
-    <!-- <script>
+    <script>
         // Define la contraseña que deseas usar
         const contrasenaCorrecta = "MiProyectoGH77"; // <-- ¡CAMBIA ESTO!
 
@@ -243,45 +233,7 @@
         }
 
         verificarAcceso();
-    </script> -->
-
-
-
-    <!-- SCRIPT DE PROTECCIÓN POR CONTRASEÑA VERSIÓN 2-->
-
-    <script>
-        const contrasenaCorrecta = "MiProyectoGH77"; // <-- ¡CAMBIA ESTO!
-        
-        const body = document.body;
-        const loginModal = document.getElementById('login-modal');
-        const passwordInput = document.getElementById('password-input');
-
-        body.style.display = 'none';
-        loginModal.style.display = 'flex'; // Usamos 'flex' para centrar el contenido
-
-        // Función principal para verificar la contraseña
-        function verificarAcceso() {
-            const contrasenaIngresada = passwordInput.value;
-
-            if (contrasenaIngresada === contrasenaCorrecta) {
-                // Si es correcta, oculta el modal y muestra la página
-                loginModal.style.display = 'none';
-                body.style.display = ''; 
-            } else {
-                // Si es incorrecta
-                alert("Contraseña incorrecta o acceso denegado. Serás redirigido.");
-                window.location.href = "https://www.google.com";
-            }
-        }
-        
-        // Opcional: Permite presionar Enter en el campo de contraseña
-        passwordInput.addEventListener('keypress', function (e) {
-            if (e.key === 'Enter') {
-                verificarAcceso();
-            }
-        });
     </script>
-
 
     <script src="script.js"></script> 
 </body>
