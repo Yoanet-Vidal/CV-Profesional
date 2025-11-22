@@ -6,7 +6,7 @@
     <meta name="keywords" content="diseño gráfico, portafolio, diseño web, branding, maquetación, WordPress, diseño editorial, Illustrator, Photoshop">
     <meta name="author" content="Yoanet Vidal">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yoanet Vidal | Diseño Gráfico & Web</title>
+    <title>CV | Diseño Gráfico & Web</title>
     
     <link class="favicon" rel="icon" type="image/png" href="img/favicon.png"> 
     
@@ -207,19 +207,32 @@
         </div>
     </div>
 
+    <div id="login-modal">
+        <div id="login-content">
+            <h3>🔒 GitHub Project Security</h3>
+            <p>Por favor, introduce la clave de acceso para ver este proyecto:</p>
+            <input type="password" id="password-input" placeholder="Contraseña de Acceso" required>
+            <button onclick="verificarAcceso()">Ver Proyecto</button>
+            <small style="color: #666; display: block; margin-top: 15px;">Si no tienes la contraseña, serás redirigido.</small>
+        </div>
+    </div>
+
    <!-- BOTÓN DE SUBIR ARRIBA -->
     <button id="scrollToTopBtn" title="Subir Arriba">
         &#8593;
     </button>
     
-    <script>
+
+    <!-- SCRIPT DE PROTECCIÓN POR CONTRASEÑA VERSIÓN 1-->
+
+    <!-- <script>
         // Define la contraseña que deseas usar
         const contrasenaCorrecta = "MiProyectoGH77"; // <-- ¡CAMBIA ESTO!
 
         document.body.style.display = 'none';
 
         function verificarAcceso() {
-            const contrasenaIngresada = prompt("Por favor, introduce la contraseña:");
+            const contrasenaIngresada = prompt("Por favor, introduce la clave de acceso para ver el proyecto:");
 
             if (contrasenaIngresada === contrasenaCorrecta) {
                 document.body.style.display = '';
@@ -230,7 +243,45 @@
         }
 
         verificarAcceso();
+    </script> -->
+
+
+
+    <!-- SCRIPT DE PROTECCIÓN POR CONTRASEÑA VERSIÓN 2-->
+
+    <script>
+        const contrasenaCorrecta = "MiProyectoGH77"; // <-- ¡CAMBIA ESTO!
+        
+        const body = document.body;
+        const loginModal = document.getElementById('login-modal');
+        const passwordInput = document.getElementById('password-input');
+
+        body.style.display = 'none';
+        loginModal.style.display = 'flex'; // Usamos 'flex' para centrar el contenido
+
+        // Función principal para verificar la contraseña
+        function verificarAcceso() {
+            const contrasenaIngresada = passwordInput.value;
+
+            if (contrasenaIngresada === contrasenaCorrecta) {
+                // Si es correcta, oculta el modal y muestra la página
+                loginModal.style.display = 'none';
+                body.style.display = ''; 
+            } else {
+                // Si es incorrecta
+                alert("Contraseña incorrecta o acceso denegado. Serás redirigido.");
+                window.location.href = "https://www.google.com";
+            }
+        }
+        
+        // Opcional: Permite presionar Enter en el campo de contraseña
+        passwordInput.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                verificarAcceso();
+            }
+        });
     </script>
+
 
     <script src="script.js"></script> 
 </body>
